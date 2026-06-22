@@ -1,9 +1,6 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 from app.config import settings
-from app.models import User, Role
-from app.auth import get_password_hash
 
 engine = create_engine(settings.DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -20,6 +17,9 @@ def get_db():
 
 
 def init_db_data(db):
+    from app.models import User, Role
+    from app.auth import get_password_hash
+
     existing_users = db.query(User).count()
     if existing_users > 0:
         return

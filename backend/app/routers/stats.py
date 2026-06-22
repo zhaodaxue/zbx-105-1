@@ -9,7 +9,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models import Application, User, Role, ApplicationStatus
+from app.models import Application, Role, ApplicationStatus
 from app.schemas import DailyStatsResponse
 from app.auth import require_roles
 
